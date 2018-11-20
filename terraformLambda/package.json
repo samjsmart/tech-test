@@ -1,0 +1,15 @@
+{
+  "name": "terraformlambda",
+  "version": "1.0.0",
+  "description": "A wrapper to run terraform in lambda for the techTest project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node npm-start.js"
+  },
+  "author": "Sam Smart <me@sam-smart.co.uk>",
+  "license": "ISC",
+  "dependencies": {
+    "child_process": "^1.0.2"
+  }
+}

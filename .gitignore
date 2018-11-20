@@ -1,0 +1,5 @@
+terraformLambda/bin/terraform
+terraformLambda/payload.zip
+terraformLambda/node_modules
+terraformLambda/package-lock.json
+
