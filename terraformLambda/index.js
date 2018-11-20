@@ -1,15 +1,15 @@
 var child_process = require('child_process');
 
-exports.handler = async (event) => {
+exports.handler = async(event) => {
   
   return new Promise((resolve, reject) => {
-    console.log(JSON.stringify(event));
     
     var terraformCommand = 'plan';
+    var terraformPath    = (event.local != undefined && event.local == true) ? './bin/terraformLocal' : './bin/terraform';
 
     //Spawn the terraform process
     var terraform = child_process.spawn(
-      './bin/terraform',
+      terraformPath,
       [terraformCommand],
       {stdio: 'pipe'}
     );

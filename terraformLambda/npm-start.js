@@ -2,6 +2,8 @@
 var terraform = require('./index.js');
 
 //Call async handler and log return
-terraform.handler().then(function(payload) {
+terraform.handler({
+	local: true
+}).then(function(payload) {
 	console.log(payload);
 });
