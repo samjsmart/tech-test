@@ -10,6 +10,8 @@
   "author": "Sam Smart <me@sam-smart.co.uk>",
   "license": "ISC",
   "dependencies": {
-    "child_process": "^1.0.2"
+    "aws-sdk": "^2.360.0",
+    "child_process": "^1.0.2",
+    "fs-extra": "^7.0.1"
   }
 }
