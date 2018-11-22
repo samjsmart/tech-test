@@ -23,4 +23,15 @@ data "aws_iam_policy_document" "terraform_lambda" {
       "arn:aws:logs:*:*:*",
     ]
   }
+
+  //Allow creation of buckets
+  statement {
+    actions = [
+      "s3:*"
+    ]
+
+    resources = [
+      "*"
+    ]
+  }
 }
