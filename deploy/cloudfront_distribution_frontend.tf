@@ -9,6 +9,10 @@ resource "aws_cloudfront_distribution" "frontend" {
       origin_access_identity = "${aws_cloudfront_origin_access_identity.frontend.cloudfront_access_identity_path}"
     }
   }
+
+  aliases = [
+    "${var.frontend_subdomain}.${var.domain}"
+  ]
   
   default_cache_behavior {
     allowed_methods  = [
