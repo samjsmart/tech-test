@@ -1,7 +1,13 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
+<header *ngIf="displayHeader">
+  <div class="navbar navbar-dark bg-dark shadow-sm mb-4">
+    <div class="container justify-content-between">
+      <p class="navbar-brand m-0">
+        TechTest
+      </p>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>

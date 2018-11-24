@@ -44,7 +44,6 @@ exports.handler = async(event) => {
       //Run the init
       var initResult  = await terraform(terraformPath, 'init', '');
 
-      //logEvents.statePath        = 
       logEvents.terraformInitLog = logEvents.terraformInitLog.concat(initResult);
 
       switch(event.action) {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tech-test-frontend';
+  displayHeader: boolean;
+
+  constructor(location: Location) {
+    this.displayHeader = /^(?!\/login)/.test(location.path());
+  }
 }
