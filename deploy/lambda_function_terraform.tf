@@ -1,4 +1,4 @@
-resource "aws_lambda_function" "terraform_lambda" {
+resource "aws_lambda_function" "terraform" {
   filename          = "../terraformLambda/artefacts/payload.zip"
   source_code_hash  = "${base64sha256(file("../terraformLambda/artefacts/payload.zip"))}"
   function_name     = "${local.csi}-terraform-lambda"
