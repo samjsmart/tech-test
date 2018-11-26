@@ -7,4 +7,10 @@ resource "aws_lambda_function" "api" {
   runtime           = "nodejs8.10"
   timeout           = "900"
   tags              = "${local.default_tags}"
+
+  environment {
+    variables = {
+      SECRET_KEY = "${var.secret_key}"
+    }
+  }
 }

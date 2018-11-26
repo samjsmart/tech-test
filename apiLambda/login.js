@@ -1,4 +1,5 @@
 var validator = require('validator');
+var jwt       = require('jsonwebtoken');
 
 function handleLogin(event) {
 
@@ -27,9 +28,29 @@ function handleLogin(event) {
     }
   }
 
+  //Implement user search here
+  //TODO
+
+
+  //All okay, create the token
+  //TODO: Replace static values after testing
+  var token = jwt.sign(
+    {
+      userid: 42 //Life, the universe and everything.
+    },
+    process.env['SECRET_KEY'],
+    {
+      algorithm: 'HS256',
+      expiresIn: '1d'
+    }
+  )
+
+  //Return the token
   return {
     statusCode: 200,
-    body: JSON.stringify(params)
+    body: JSON.stringify({
+      token: token
+    })
   }
 }
 

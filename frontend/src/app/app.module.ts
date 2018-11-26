@@ -3,6 +3,7 @@ import { NgModule }         from '@angular/core';
 import { FormsModule }      from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NotifierModule }   from 'angular-notifier';
+import { CookieService }    from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent }     from './app.component';
@@ -30,7 +31,7 @@ import { LoginComponent }   from './login/login.component'
       }
     })
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

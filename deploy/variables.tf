@@ -23,42 +23,6 @@ variable "whitelist" {
   ]
 }
 
-variable "allowed_methods" {
-  description = "Allowed methods"
-  type        = "list"
-
-  default = [
-    "OPTIONS",
-    "HEAD",
-    "GET",
-    "POST",
-    "PUT",
-    "PATCH",
-    "DELETE",
-  ]
-}
-
-variable "allowed_origin" {
-  description = "Allowed origin"
-  type        = "string"
-  default     = "*"
-}
-
-variable "allowed_headers" {
-  description = "Allowed headers"
-  type        = "list"
-
-  default = [
-    "Content-Type",
-    "X-Amz-Date",
-    "Authorization",
-    "X-Api-Key",
-    "X-Amz-Security-Token",
-  ]
-}
-
-variable "allowed_max_age" {
-  description = "Allowed response caching time"
-  type        = "string"
-  default     = "7200"
+variable "secret_key" {
+  description = "Secret key used for signing JsonWebTokens, this intentionally is left without a default value"
 }
