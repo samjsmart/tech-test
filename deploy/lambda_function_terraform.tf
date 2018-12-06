@@ -1,6 +1,6 @@
 resource "aws_lambda_function" "terraform" {
-  filename          = "../terraformLambda/artefacts/payload.zip"
-  source_code_hash  = "${base64sha256(file("../terraformLambda/artefacts/payload.zip"))}"
+  filename          = "../terraform-lambda/artefacts/payload.zip"
+  source_code_hash  = "${base64sha256(file("../terraform-lambda/artefacts/payload.zip"))}"
   function_name     = "${local.csi}-terraform-lambda"
   role              = "${aws_iam_role.terraform_lambda.arn}"
   handler           = "index.handler"

@@ -1,6 +1,6 @@
 resource "aws_lambda_function" "api" {
-  filename          = "../apiLambda/artefacts/payload.zip"
-  source_code_hash  = "${base64sha256(file("../apiLambda/artefacts/payload.zip"))}"
+  filename          = "../api-lambda/artefacts/payload.zip"
+  source_code_hash  = "${base64sha256(file("../api-lambda/artefacts/payload.zip"))}"
   function_name     = "${local.csi}-api-lambda"
   role              = "${aws_iam_role.api_lambda.arn}"
   handler           = "index.handler"
