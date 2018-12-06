@@ -7,5 +7,5 @@ output "cloudfront_domain" {
 }
 
 output "api_url" {
-  value = "${aws_api_gateway_deployment.api.invoke_url}"
+  value = "${aws_api_gateway_deployment.frontend.invoke_url}"
 }
