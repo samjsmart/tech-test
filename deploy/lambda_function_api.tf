@@ -11,6 +11,7 @@ resource "aws_lambda_function" "api" {
   environment {
     variables = {
       SECRET_KEY = "${var.secret_key}"
+      USER_TABLE = "${aws_dynamodb_table.users.arn}"
     }
   }
 }
