@@ -31,9 +31,11 @@ export class LoginComponent {
       return;
     }
     
-    this.apiService.login(this.email, this.password, function(data) {
-      console.log('RETURNED DATA:');
-      console.log(data);
+    this.apiService.login(this.email, this.password, (data, err) => {
+      if(err)
+        this.notifier.notify('error', 'An error has occurred, please try again');
+      else
+        console.log('Data: ', data);
     });
   }
 }

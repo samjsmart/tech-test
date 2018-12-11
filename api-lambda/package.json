@@ -10,6 +10,8 @@
   "author": "Sam Smart <sam.smart@bjss.com>",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.373.0",
+    "jsonwebtoken": "^8.4.0",
     "validator": "^10.9.0"
   }
 }

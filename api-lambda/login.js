@@ -1,7 +1,9 @@
 var validator = require('validator');
 var jwt       = require('jsonwebtoken');
+var aws       = require('aws-sdk');
+var dynamodb  = new aws.DynamoDB();
 
-function handleLogin(event) {
+async function handleLogin(event) {
 
   //CORS options request
   if(event.httpMethod == "OPTIONS") {
@@ -15,9 +17,6 @@ function handleLogin(event) {
   //Parse posted params
   var params = JSON.parse(event.body);
 
-  //Log params
-  console.log(params);
-
   //Check email and password are present
   if(!params.email || !params.password) {
     return {
@@ -28,9 +27,35 @@ function handleLogin(event) {
     }
   }
 
-  //Implement user search here
-  //TODO
+  try {
+    //Construct DynamoDB search params
+    var dbParams = {
+      ExpressionAttributeValues: {
+        ":v1": {
+          S: params.email
+        }
+      },
+      KeyConditionExpression: "Email = :v1",
+      TableName: process.env['USER_TABLE']
+    }
 
+    var result = await dynamodb.query(dbawdParams).promise();
+    console.log(dbParams);
+    console.log(result);
+
+  } catch(e) {
+
+    //Log the exception for investigation
+    console.log(e);
+
+    //Notify client of a generic error
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        Error: 'An error has occurred'
+      })
+    }
+  }
 
   //All okay, create the token
   //TODO: Replace static values after testing
