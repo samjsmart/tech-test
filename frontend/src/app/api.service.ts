@@ -1,7 +1,8 @@
-import { Injectable }    from '@angular/core';
-import { HttpClient }    from '@angular/common/http';
-import { HttpHeaders }   from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
+import { Injectable }        from '@angular/core';
+import { HttpClient }        from '@angular/common/http';
+import { HttpHeaders }       from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
+import { CookieService }     from 'ngx-cookie-service';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class ApiService {
   //TODO - This will be in a config file
-  baseUrl:       string = 'https://agtd9u0rz6.execute-api.eu-west-2.amazonaws.com/prod';
+  baseUrl:       string = 'https://vuqzp0hcfi.execute-api.eu-west-2.amazonaws.com/prod';
   http:          HttpClient;
   cookieService: CookieService
 
@@ -18,21 +19,32 @@ export class ApiService {
     this.cookieService = cookieService
   }
 
-  login(email: string, password: string, callback: (data: any) => void) {
+  login(email: string, password: string, callback: (data: any, err: HttpErrorResponse) => void) {
     var headers = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
       })
     };
 
-    //TODO: async and error handle
-    this.http.post(this.baseUrl + '/login', {
+    //Post request to API
+    this.http.post<any>(this.baseUrl + '/login', {
       email:    email,
       password: password
-    }, headers)
-    .subscribe((data: any) => {
+    }, headers).subscribe(
+    data => {
+      //An error has happened
+      if(!data) 
+        return;
+
+      //Set JWT cookie
       this.cookieService.set('authToken', data.token);
-      callback(data);
+
+      //Invoke callback
+      callback(data, null);
+    },
+    (err: HttpErrorResponse) => {
+      //Something bad has happened, bubble the error up.
+      callback(null, err);
     });
   }
 }

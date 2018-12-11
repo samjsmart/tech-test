@@ -1,13 +1,13 @@
 var loginHandler = require('./login')
 
-exports.handler = function (event, context, callback) {
+exports.handler = async (event) => {
   
   //Declare and init response
   var response = {};
 
   //Login is special so we skip auth
   if(event.path == '/login')
-    response = loginHandler(event);
+    response = await loginHandler(event);
 
   //Content will always be json and CORS needs to be enabled
   //TODO: Pass domain in as env var and allow access based on it
@@ -19,5 +19,5 @@ exports.handler = function (event, context, callback) {
   }
 
   //Send the response
-  callback(null, response);
+  return response;
 }
