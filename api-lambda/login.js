@@ -39,7 +39,7 @@ async function handleLogin(event) {
       TableName: process.env['USER_TABLE']
     }
 
-    var result = await dynamodb.query(dbawdParams).promise();
+    var result = await dynamodb.query(dbParams).promise();
     console.log(dbParams);
     console.log(result);
 
